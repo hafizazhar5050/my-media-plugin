@@ -1,0 +1,21 @@
+.fmp-client-container {
+    background: #f5f5f5;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 20px 0;
+    border: 1px solid #ddd;
+}
+
+.fmp-client-container p {
+    color: #666;
+    font-size: 14px;
+}
+
+.fmp-consent-notice {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    color: #856404;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
