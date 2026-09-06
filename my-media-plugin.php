@@ -34,6 +34,45 @@ function mmp_init() {
 }
 add_action('plugins_loaded', 'mmp_init');
 
+// Register settings
+function mmp_register_settings() {
+    register_setting('mmp_settings_group', 'mmp_whatsapp_api_key', array(
+        'sanitize_callback' => 'sanitize_text_field',
+        'type' => 'string',
+        'show_in_rest' => true
+    ));
+    
+    register_setting('mmp_settings_group', 'mmp_whatsapp_phone', array(
+        'sanitize_callback' => 'sanitize_text_field',
+        'type' => 'string',
+        'show_in_rest' => true
+    ));
+    
+    register_setting('mmp_settings_group', 'mmp_enable_streaming', array(
+        'sanitize_callback' => 'rest_sanitize_boolean',
+        'type' => 'boolean',
+        'show_in_rest' => true
+    ));
+    
+    register_setting('mmp_settings_group', 'mmp_enable_screenshots', array(
+        'sanitize_callback' => 'rest_sanitize_boolean',
+        'type' => 'boolean',
+        'show_in_rest' => true
+    ));
+
+    add_settings_section(
+        'mmp_main_settings',
+        'My Media Plugin Settings',
+        'mmp_settings_section_callback',
+        'mmp_settings'
+    );
+}
+add_action('admin_init', 'mmp_register_settings');
+
+function mmp_settings_section_callback() {
+    echo 'Configure your My Media Plugin settings below:';
+}
+
 // Activation hook
 register_activation_hook(__FILE__, 'mmp_activate_plugin');
 function mmp_activate_plugin() {
